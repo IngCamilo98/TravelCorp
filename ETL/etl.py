@@ -12,14 +12,15 @@ cities = {
 }
 
 # ---------------------------------------------------------------
-# Primera API
+# Primera API 
+# A. API Meteorológica - Open-Mete
 # ---------------------------------------------------------------
 
 # URL con parámetros necesarios
 lat = 40.7128
 lon = -74.0060
 
-url = (
+url_meteo = (
     f"https://api.open-meteo.com/v1/forecast"
     f"?latitude={lat}&longitude={lon}"
     f"&current=temperature_2m,wind_speed_10m"
@@ -28,26 +29,26 @@ url = (
     f"&forecast_days=7"
 )
 try:
-    response = requests.get(url, timeout=10)
+    response = requests.get(url_meteo, timeout=10)
     response.raise_for_status()  # Lanza error si status != 200
-    data = response.json()
+    data_meteo = response.json()
     # Validar que el JSON tiene los datos esperados
-    if "current" not in data:
+    if "current" not in data_meteo:
         raise ValueError("Respuesta incompleta: falta 'current' en la API")
 
     print("------------------------------------------------------------------")
     print("Datos obtenidos correctamente ✅\n")
     print("Ciudad = Nueva York")
-    print("Ubicación:", data.get("latitude"), data.get("longitude"))
-    print("Temperatura actual:", data["current"].get("temperature_2m"), "°C")
+    print("Ubicación:", data_meteo.get("latitude"), data_meteo.get("longitude"))
+    print("Temperatura actual:", data_meteo["current"].get("temperature_2m"), "°C")
     print("Pronostico 7 dias:")
     print("------------------------------------------------------------------")
     # Extraer las listas de datos diarios
-    fechas = data['daily']['time']
-    temp_minimas = data['daily']['temperature_2m_min']
-    temp_maximas = data['daily']['temperature_2m_max']
-    probabilidad_precipitacion = data['daily']['precipitation_probability_max']
-    indices_uv = data['daily']['uv_index_max']    
+    fechas = data_meteo['daily']['time']
+    temp_minimas = data_meteo['daily']['temperature_2m_min']
+    temp_maximas = data_meteo['daily']['temperature_2m_max']
+    probabilidad_precipitacion = data_meteo['daily']['precipitation_probability_max']
+    indices_uv = data_meteo['daily']['uv_index_max']    
     # --- Imprimir día y pronóstico de temperatura ---
     print("--- Pronóstico de Temperatura ---")
     for i in range(len(fechas)):
@@ -67,7 +68,7 @@ try:
     for i in range(len(fechas)):
         print(f"El índice UV máximo para el {fechas[i]} es de {indices_uv[i]}.")    
     print("------------------------------------------------------------------")
-    print("Viento actual:", data["current"].get("wind_speed_10m"), "km/h")
+    print("Viento actual:", data_meteo["current"].get("wind_speed_10m"), "km/h")
 
 except requests.exceptions.RequestException as e:
     print(f"❌ Error de conexión con la API: {e}")
@@ -78,4 +79,6 @@ except Exception as e:
 
 # ---------------------------------------------------------------
 #   Segunda API
+# B. API de Tipos de Cambio - ExchangeRate-API
 # ---------------------------------------------------------------
+
