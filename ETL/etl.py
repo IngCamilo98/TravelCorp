@@ -82,3 +82,35 @@ except Exception as e:
 # B. API de Tipos de Cambio - ExchangeRate-API
 # ---------------------------------------------------------------
 
+try:
+    url_exchangerate = (f"https://api.exchangerate-api.com"
+                        f"/v4"
+                        f"/latest"
+                        f"/USD"
+                        )
+
+    response = requests.get(url_exchangerate, timeout=10)
+    response.raise_for_status()  # Lanza error si status != 200
+    data_exchangerate = response.json()
+
+    # 1. Conversión USD a monedas locales
+    base_currency = data_exchangerate["base"]
+    rates = data_exchangerate["rates"]
+
+    print("### Conversión de USD a monedas locales 💵")
+    print(f"La tasa base es de **1 {base_currency}**.\n")
+    print("Aquí están algunas de las tasas de conversión más comunes:")
+    
+    # Ejemplos de monedas para mostrar
+    currencies_to_show = ["EUR", "MXN", "COP", "JPY", "GBP"]
+    for currency in currencies_to_show:
+        if currency in rates:
+            print(f"- **{currency}:** {rates[currency]:.2f}")
+    
+
+except requests.exceptions.RequestException as e:
+    print(f"❌ Error de conexión con la API: {e}")
+except ValueError as e:
+    print(f"⚠️ Datos incompletos o formato inesperado: {e}")
+except Exception as e:
+    print(f"🚨 Error inesperado: {e}")
