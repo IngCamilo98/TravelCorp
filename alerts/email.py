@@ -13,6 +13,7 @@ def send_email_raw(sender: str, password: str, recipient: str, subject: str, bod
         server.login(sender, password)
         server.sendmail(sender, recipient, msg.as_string())
 
+
 def send_email(recipient: str, subject: str, body: str):
     sender = os.environ.get('EMAIL_ADDRESS')
     password = os.environ.get('EMAIL_APP_PASSWORD')
