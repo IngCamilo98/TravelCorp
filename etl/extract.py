@@ -2,7 +2,9 @@ import requests
 import json
 import time
 from typing import Dict, Any
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+import random
+
 # Cordenadas ciudades a monitorear
 
 cities = {
@@ -143,46 +145,68 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
 # B. API de Tipos de Cambio - ExchangeRate-API
 # ---------------------------------------------------------------
 
-def extract_api_exchangerate() -> dict:
+def extract_api_exchangerate(city_currency: str)->Dict[str, Any]:
+    """La función extract_api_exchangerate consulta la API ExchangeRate-API para obtener información financiera sobre el tipo de cambio de una moneda específica respecto al dólar estadounidense (USD) y lo transfomra en un diccionario con los requerimints solicitados.
 
-    try:
-        url_exchangerate = (f"https://api.exchangerate-api.com"
-                            f"/v4"
-                            f"/latest"
-                            f"/USD"
-                            )
 
-        response = requests.get(url_exchangerate, timeout=10)
-        response.raise_for_status()  # Lanza error si status != 200
-        data_exchangerate = response.json()
 
-        # 1. Conversión USD a monedas locales
-        base_currency = data_exchangerate["base"]
-        rates = data_exchangerate["rates"]
+    Args:
+        city_currency (str): Se requiere la nomenclatura de la moneda a consultar, por ejemplo: "BRL" para el Real Brasileño.
 
-        print("### Conversión de USD a monedas locales 💵")
-        print(f"La tasa base es de **1 {base_currency}**.\n")
-        print("Aquí están algunas de las tasas de conversión más comunes:")
+    Returns:
+        Dict[str, Any]: se retorno el diccionario con la información financiera solicitada.
+    """
+    
+    # URL de la API de ExchangeRate-API
+    url_exchangerate = (f"https://api.exchangerate-api.com"
+                        f"/v4"
+                        f"/latest"
+                        f"/USD"
+                        )
+    
+
+    response = requests.get(url_exchangerate, timeout=10)
+    response.raise_for_status()  # Lanza error si status != 200
+    data_exchangerate = response.json()
+
+    # 1. tipo_de_cambio_actual USD/Moneda
+    rates = data_exchangerate["rates"]
+
+    # 2. Tendecia de los últimos 5 días
+    today_rate_brl = data_exchangerate["rates"][city_currency]
+    today_date_str = data_exchangerate["date"]
+    today = datetime.strptime(today_date_str, "%Y-%m-%d").date()
+
+    current_rate = today_rate_brl
+    historical_variations = []
+    historical_data = []
+
+    # Generar datos simulados para los últimos 5 días
+    for i in range(5):
+        date = today - timedelta(days=i)
+        variation_percent = random.uniform(-2, 2)
+        historical_variations.append(variation_percent)
         
-        # Ejemplos de monedas para mostrar
-        currencies_to_show = ["USD", "GBP", "JPY", "BRL", "AUD"]
-        
-        for currency in currencies_to_show:
-            if currency in rates:
-                print(f"- **{currency}:** {rates[currency]:.2f}")
-        
-        print(url_exchangerate)
+        # La tasa anterior se calcula a partir de la actual y la variación simulada
+        previous_rate = current_rate / (1 + (variation_percent / 100))
+        current_rate = previous_rate
 
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error de conexión con la API: {e}")
-    except ValueError as e:
-        print(f"⚠️ Datos incompletos o formato inesperado: {e}")
-    except Exception as e:
-        print(f"🚨 Error inesperado: {e}")
+    # Calcular el promedio de las variaciones para la tendencia
+    average_variation = sum(historical_variations) / len(historical_variations)
+
+    if average_variation <= 1.5:
+        tendencia = "Estable"
+    else:
+        tendencia = "Volátil"
+
+    finanzas = {
+        "tipo_de_cambio_actual":rates[city_currency],
+        "variacion_diaria": average_variation,
+        "tendencia_5_dias": tendencia,
+    }
 
 
-    #     
-    return None
+    return finanzas
 
 # ---------------------------------------------------------------
 #   Tercera API
@@ -240,14 +264,20 @@ def extract_api_timezone() -> None:
             print(f"No se pudo obtener datos para {ciudad}")
     return None
 
+# ---------------------------------------------------------------
+# Cuarto Indices
+# ---------------------------------------------------------------
 
 dict_meteorology = extract_api_meteorology("Nueva York",cities["Nueva York"])
 #print(dict_meteorology)
 
-extract_api_exchangerate()
+dict_finanzas = extract_api_exchangerate("BRL")
+#pretty_json = json.dumps(finanzas, indent=4)
+#print(pretty_json)
 
-#extract_api_timezone()
+merged_dict = {**dict_meteorology, **dict_finanzas}
 
+print(json.dumps(merged_dict, indent=4, ensure_ascii=False))
 
 
 
