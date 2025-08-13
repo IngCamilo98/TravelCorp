@@ -21,11 +21,16 @@ dict_meteorology = extract_api_meteorology(name_cities[0], cities["Nueva York"])
 #print(dict_meteorology)
 dict_finanzas = extract_api_exchangerate(cities["Nueva York"]["moneda"])
 #print(dict_finanzas)
-merged_dict = {**dict_meteorology, **dict_finanzas}
-print(json.dumps(merged_dict, indent=4, ensure_ascii=False))
+data_city = {**dict_meteorology, **dict_finanzas}
+print(json.dumps(data_city, indent=4, ensure_ascii=False))
 
-option = alerta_climatica(merged_dict)
+option = alerta_climatica(data_city)
 print(f"Alerta climática: {option}")
+
+option = alerta_tipo_cambio(data_city)
+print(f"Alerta tipo de cambio: {option}")
+
+
 
 
 
