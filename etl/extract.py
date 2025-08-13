@@ -1,7 +1,7 @@
 import random
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Any
-
+import logging
 import requests
 
 from models.open_meteo_response import WeatherData
@@ -60,7 +60,7 @@ def get_pronostico_siete_dias(data_meteorology: Dict[str, Any]) -> Dict:
         }
         pronostico_7_dias.append(dia)
 
-    return pronostico_7_dias
+    return {"pronostico_7_dias": pronostico_7_dias}
 
 
 def extract_api_meteorology(name_city: str, city: Dict[str, Any], retry: bool = True, max_retries: int = 2) -> Dict[
@@ -89,7 +89,7 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any], retry: bool = 
         f"&timezone=auto"
         f"&forecast_days=7"
     )
-    print(f"{url_meteo=}")
+    logging.info(f"{url_meteo=}")
 
     while retry and max_retries > 0:
         try:
@@ -115,11 +115,11 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any], retry: bool = 
             return dict_meteorology
 
         except requests.exceptions.RequestException as e:
-            print(f"❌ Error de conexión con la API: {e}")
+            logging.error(f"❌ Error de conexión con la API: {e}")
         except ValueError as e:
-            print(f"⚠️ Datos incompletos o formato inesperado: {e}")
+            logging.warning(f"⚠️ Datos incompletos o formato inesperado: {e}")
         except Exception as e:
-            print(f"🚨 Error inesperado: {e}")
+            logging.error(f"🚨 Error inesperado: {e}")
         retry -= 1
     raise Exception("❌ No se pudo obtener datos de la API meteorológica después de varios intentos.")
 
@@ -190,6 +190,12 @@ def extract_api_exchangerate(city_currency: str, retry: bool = True, max_retries
             }
             return finanzas
         except requests.exceptions.RequestException as e:
-            print(f"❌ Error de conexión con la API: {e}")
+            logging.error(f"❌ Error de conexión con la API: {e}")
         max_retries -= 1
     raise Exception("❌ No se pudo obtener datos de la API de tipos de cambio después de varios intentos.")
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)

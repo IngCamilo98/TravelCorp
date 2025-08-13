@@ -10,6 +10,14 @@ from etl.load import create_list_load_data_cities
 
 load_dotenv()
 
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
 
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -32,13 +40,14 @@ def execute_etl():
         existing_data.append(data_final)
         with open(output_path, "w", encoding="utf-8") as outfile:
             json.dump(existing_data, outfile, indent=4, ensure_ascii=False, cls=DateTimeEncoder)
+        logging.info("Datos ETL guardados correctamente en %s", output_path)
     except Exception as e:
-        print(f"Error executing ETL process: {e}")
+        logging.error("Error ejecutando el proceso ETL: %s", e)
         raise e
 
 
 if __name__ == "__main__":
     while True:
         execute_etl()
-        print(f"Waiting for {execution_sleep_time} seconds before the next execution...")
+        logging.info("Esperando %s segundos antes de la siguiente ejecución...", execution_sleep_time)
         time.sleep(execution_sleep_time)
