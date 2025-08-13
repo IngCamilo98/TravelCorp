@@ -1,25 +1,19 @@
 from extract import extract_api_meteorology, extract_api_exchangerate
 from transform import alerta_climatica
 from transform import alerta_tipo_cambio, indice_ivv
-from typing import Dict, Any    
+from typing import Dict, Any
+from config.constants import CITIES
 
 import json
 
 # Cordenadas ciudades a monitorear
 
-cities = {
-    "Nueva York": {"lat": 40.7128, "lon": -74.0060, "moneda": "USD", "timezone": "America/New_York"},
-    "Londres": {"lat": 51.5074, "lon": -0.1278, "moneda": "GBP", "timezone": "Europe/London"},
-    "Tokio": {"lat": 35.6895, "lon": 139.6917, "moneda": "JPY", "timezone": "Asia/Tokyo"},
-    "São Paulo": {"lat": -23.5505, "lon": -46.6333, "moneda": "BRL", "timezone": "America/Sao_Paulo"},
-    "Sídney": {"lat": -33.8688, "lon": 151.2093, "moneda": "AUD", "timezone": "Australia/Sydney"}
-}
 
-name_cities = list(cities.keys())
+name_cities = list(CITIES.keys())
 
-dict_meteorology = extract_api_meteorology(name_cities[0], cities["Nueva York"])
+dict_meteorology = extract_api_meteorology(name_cities[0], CITIES["Nueva York"])
 #print(dict_meteorology)
-dict_finanzas = extract_api_exchangerate(cities["Nueva York"]["moneda"])
+dict_finanzas = extract_api_exchangerate(CITIES["Nueva York"]["moneda"])
 #print(dict_finanzas)
 merged_dict = {**dict_meteorology, **dict_finanzas}
 print(json.dumps(merged_dict, indent=4, ensure_ascii=False))
