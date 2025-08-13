@@ -1,31 +1,44 @@
-from etl.extract import extract_api_meteorology, extract_api_exchangerate
+import json
+import time
+from datetime import date
+
+from dotenv import load_dotenv
+
+from config.constants import CITIES
+from config.settings import execution_sleep_time
 from etl.load import create_list_load_data_cities
-#from dotenv import load_dotenv
 
-# Cordenadas ciudades a monitorear
-
-cities = {
-    "Nueva York": {"lat": 40.7128, "lon": -74.0060, "moneda": "USD", "timezone": "America/New_York"},
-    "Londres": {"lat": 51.5074, "lon": -0.1278, "moneda": "GBP", "timezone": "Europe/London"},
-    "Tokio": {"lat": 35.6895, "lon": 139.6917, "moneda": "JPY", "timezone": "Asia/Tokyo"},
-    "São Paulo": {"lat": -23.5505, "lon": -46.6333, "moneda": "BRL", "timezone": "America/Sao_Paulo"},
-    "Sídney": {"lat": -33.8688, "lon": 151.2093, "moneda": "AUD", "timezone": "Australia/Sydney"}
-}
-
-# ---------------------------------------------------------------
-# Cargar datos de las ciudades
-# ---------------------------------------------------------------   
-
-list_data_cities = create_list_load_data_cities(cities)
-
-print(list_data_cities)
-
-"""
-load_dotenv()  # take environment variables
-
-from alerts.email import send_email
-
-send_email("...", "Test Email", "This is a test email sent from the script.")
-"""
+load_dotenv()
 
 
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, date):
+            return obj.isoformat()
+        return super().default(obj)
+
+
+def execute_etl():
+    try:
+        data_final = create_list_load_data_cities(CITIES)
+        output_path = "output.json"
+        try:
+            with open(output_path, "r", encoding="utf-8") as infile:
+                existing_data = json.load(infile)
+        except (FileNotFoundError, json.JSONDecodeError):
+            existing_data = []
+        if not isinstance(existing_data, list):
+            existing_data = [existing_data]
+        existing_data.append(data_final)
+        with open(output_path, "w", encoding="utf-8") as outfile:
+            json.dump(existing_data, outfile, indent=4, ensure_ascii=False, cls=DateTimeEncoder)
+    except Exception as e:
+        print(f"Error executing ETL process: {e}")
+        raise e
+
+
+if __name__ == "__main__":
+    while True:
+        execute_etl()
+        print(f"Waiting for {execution_sleep_time} seconds before the next execution...")
+        time.sleep(execution_sleep_time)

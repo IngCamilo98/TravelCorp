@@ -1,15 +1,10 @@
 import random
-import time
-from typing import Dict, Any
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Any
 
 import requests
 
-from config.constants import CITIES
 from models.open_meteo_response import WeatherData
-from pydantic import ValidationError
-
 
 
 # ---------------------------------------------------------------
@@ -68,7 +63,8 @@ def get_pronostico_siete_dias(data_meteorology: Dict[str, Any]) -> Dict:
     return pronostico_7_dias
 
 
-def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, Any]:
+def extract_api_meteorology(name_city: str, city: Dict[str, Any], retry: bool = True, max_retries: int = 2) -> Dict[
+    str, Any]:
     """La función extract_api_meteorology consulta la API meteorológica Open-Meteo para una ciudad específica y devuelve un diccionario con información solicitado del clima en el formato de diccionario solicitado.
 
     Raises:
@@ -93,38 +89,39 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
         f"&timezone=auto"
         f"&forecast_days=7"
     )
-    try:
-        response = requests.get(url_meteo, timeout=10)
-        response.raise_for_status()  # Lanza error si status != 200
-        data_meteorology = response.json()
-        # Validar que el JSON tiene los datos esperados
-        if "current" not in data_meteorology:
-            raise ValueError("Respuesta incompleta: falta 'current' en la API")
+    print(f"{url_meteo=}")
 
-        dict_meteorology = {
-            "timestamp": get_format_timestamp(data_meteorology['current']['time']),
-            "ciudad": name_city,
-            "clima": {
-                "temperatura_actual": data_meteorology['current']['temperature_2m'],
-                "pronostico_7_dias": get_pronostico_siete_dias(data_meteorology),
-                "precipitacion": data_meteorology['daily']['precipitation_probability_max'][0],
-                "viento": data_meteorology['current']['wind_speed_10m'],
-                "uv": data_meteorology['daily']['uv_index_max'][0]
+    while retry and max_retries > 0:
+        try:
+            response = requests.get(url_meteo, timeout=30)
+            response.raise_for_status()  # Lanza error si status != 200
+            data_meteorology = response.json()
+            # Validar que el JSON tiene los datos esperados
+            if "current" not in data_meteorology:
+                raise ValueError("Respuesta incompleta: falta 'current' en la API")
+
+            dict_meteorology = {
+                "timestamp": get_format_timestamp(data_meteorology['current']['time']),
+                "ciudad": name_city,
+                "clima": {
+                    "temperatura_actual": data_meteorology['current']['temperature_2m'],
+                    "pronostico_7_dias": get_pronostico_siete_dias(data_meteorology),
+                    "precipitacion": data_meteorology['daily']['precipitation_probability_max'][0],
+                    "viento": data_meteorology['current']['wind_speed_10m'],
+                    "uv": data_meteorology['daily']['uv_index_max'][0]
+                }
             }
-        }
 
-        return dict_meteorology
+            return dict_meteorology
 
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error de conexión con la API: {e}")
-    except ValidationError as e:
-        print(f"⚠️ Error de validación de datos: {e}")
-    except ValueError as e:
-        print(f"⚠️ Datos incompletos o formato inesperado: {e}")
-    except Exception as e:
-        print(f"🚨 Error inesperado: {e}")
-
-    return None
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error de conexión con la API: {e}")
+        except ValueError as e:
+            print(f"⚠️ Datos incompletos o formato inesperado: {e}")
+        except Exception as e:
+            print(f"🚨 Error inesperado: {e}")
+        retry -= 1
+    raise Exception("❌ No se pudo obtener datos de la API meteorológica después de varios intentos.")
 
 
 # ---------------------------------------------------------------
@@ -132,10 +129,10 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
 # B. API de Tipos de Cambio - ExchangeRate-API
 # ---------------------------------------------------------------
 
-def extract_api_exchangerate(city_currency: str) -> Dict[str, Any]:
+def extract_api_exchangerate(city_currency: str, retry: bool = True, max_retries: int = 2) -> Dict[str, Any]:
     """La función extract_api_exchangerate consulta la API ExchangeRate-API para obtener información financiera sobre
-    el tipo de cambio de una moneda específica respecto al dólar estadounidense (USD) y lo transfomra en un diccionario
-    con los requerimints solicitados.
+    el tipo de cambio de una moneda específica respecto al dólar estadounidense (USD) y lo transfomra en un
+    diccionario con los requerimints solicitados.
 
     Args:
         city_currency (str): Se requiere la nomenclatura de la moneda a consultar, por ejemplo: "BRL" para el Real Brasileño.
@@ -150,116 +147,49 @@ def extract_api_exchangerate(city_currency: str) -> Dict[str, Any]:
                         f"/latest"
                         f"/USD"
                         )
+    while retry and max_retries > 0:
+        try:
+            response = requests.get(url_exchangerate, timeout=30)
+            response.raise_for_status()  # Lanza error si status != 200
+            data_exchangerate = response.json()
 
-    response = requests.get(url_exchangerate, timeout=10)
-    response.raise_for_status()  # Lanza error si status != 200
-    data_exchangerate = response.json()
+            # 1. tipo_de_cambio_actual USD/Moneda
+            rates = data_exchangerate["rates"]
 
-    # 1. tipo_de_cambio_actual USD/Moneda
-    rates = data_exchangerate["rates"]
+            # 2. Tendecia de los últimos 5 días
+            today_rate_brl = data_exchangerate["rates"][city_currency]
+            today_date_str = data_exchangerate["date"]
+            today = datetime.strptime(today_date_str, "%Y-%m-%d").date()
 
-    # 2. Tendecia de los últimos 5 días
-    today_rate_brl = data_exchangerate["rates"][city_currency]
-    today_date_str = data_exchangerate["date"]
-    today = datetime.strptime(today_date_str, "%Y-%m-%d").date()
+            current_rate = today_rate_brl
+            historical_variations = []
+            historical_data = []
 
-    current_rate = today_rate_brl
-    historical_variations = []
-    historical_data = []
+            # Generar datos simulados para los últimos 5 días
+            for i in range(5):
+                date = today - timedelta(days=i)
+                variation_percent = random.uniform(-2, 2)
+                historical_variations.append(variation_percent)
 
-    # Generar datos simulados para los últimos 5 días
-    for i in range(5):
-        date = today - timedelta(days=i)
-        variation_percent = random.uniform(-2, 2)
-        historical_variations.append(variation_percent)
+                # La tasa anterior se calcula a partir de la actual y la variación simulada
+                previous_rate = current_rate / (1 + (variation_percent / 100))
+                current_rate = previous_rate
 
-        # La tasa anterior se calcula a partir de la actual y la variación simulada
-        previous_rate = current_rate / (1 + (variation_percent / 100))
-        current_rate = previous_rate
+            # Calcular el promedio de las variaciones para la tendencia
+            average_variation = sum(historical_variations) / len(historical_variations)
 
-    # Calcular el promedio de las variaciones para la tendencia
-    average_variation = sum(historical_variations) / len(historical_variations)
+            if average_variation <= 1.5:
+                tendencia = "Estable"
+            else:
+                tendencia = "Volátil"
 
-    if average_variation <= 1.5:
-        tendencia = "Estable"
-    else:
-        tendencia = "Volátil"
-
-    finanzas = {
-        "tipo_de_cambio_actual": rates[city_currency],
-        "variacion_diaria": average_variation,
-        "tendencia_5_dias": tendencia,
-    }
-
-    return finanzas
-
-
-# ---------------------------------------------------------------
-#   Tercera API
-# c. API time Zone - ExchangeRate-API
-# ---------------------------------------------------------------
-
-def extract_api_timezone() -> None:
-    """La función extract_api_timezone consulta la API worldtimeapi.org para obtener la hora local y la diferencia horaria con Bogotá para varias ciudades.
-    """
-
-    ciudades = {
-        "Nueva York": "America/New_York",
-        "Londres": "Europe/London",
-        "Tokio": "Asia/Tokyo",
-        "São Paulo": "America/Sao_Paulo",
-        "Sídney": "Australia/Sydney",
-        "Bogotá": "America/Bogota"
-    }
-
-    def obtener_datos_ciudad(zona, reintentos=3, espera=2):
-        for intento in range(reintentos):
-            try:
-                url = f"http://worldtimeapi.org/api/timezone/{zona}"
-                response = requests.get(url, timeout=10)
-                if response.status_code == 200:
-                    return response.json()
-                else:
-                    print(f"Error {response.status_code} para {zona}")
-            except requests.exceptions.RequestException as e:
-                print(f"Error de conexión para {zona}: {e}")
-                time.sleep(espera)
-        return None  # Si no se logra obtener respuesta
-
-    # Primero obtenemos Bogotá
-    datos_bogota = obtener_datos_ciudad(ciudades["Bogotá"])
-    if not datos_bogota:
-        print("No se pudo obtener la hora de Bogotá. Abortando...")
-        exit()
-
-    offset_bogota = datos_bogota["utc_offset"]
-
-    print("\n--- Hora local y diferencia horaria con Bogotá ---")
-    for ciudad, zona in ciudades.items():
-        datos = obtener_datos_ciudad(zona)
-        if datos:
-            hora_local = datos["datetime"]
-            offset_ciudad = datos["utc_offset"]
-
-            dif_horas = int(offset_ciudad.split(":")[0]) - int(offset_bogota.split(":")[0])
-
-            print(f"\nCiudad: {ciudad}")
-            print(f"Hora local: {hora_local}")
-            print(f"Diferencia con Bogotá: {dif_horas} horas")
-        else:
-            print(f"No se pudo obtener datos para {ciudad}")
-    return None
-
-
-# ---------------------------------------------------------------
-# Cuarto Indices
-# ---------------------------------------------------------------
-
-dict_meteorology = extract_api_meteorology("Nueva York", CITIES["Nueva York"])
-# print(dict_meteorology)
-
-dict_finanzas = extract_api_exchangerate("BRL")
-# pretty_json = json.dumps(finanzas, indent=4)
-# print(pretty_json)
-
-merged_dict = {**dict_meteorology, **dict_finanzas}
+            finanzas = {
+                "tipo_de_cambio_actual": rates[city_currency],
+                "variacion_diaria": average_variation,
+                "tendencia_5_dias": tendencia,
+            }
+            return finanzas
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error de conexión con la API: {e}")
+        max_retries -= 1
+    raise Exception("❌ No se pudo obtener datos de la API de tipos de cambio después de varios intentos.")

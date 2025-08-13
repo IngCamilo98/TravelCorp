@@ -1,55 +1,29 @@
-from extract import extract_api_meteorology, extract_api_exchangerate
-from transform import alerta_climatica, alerta_tipo_cambio, indice_ivv  
-from typing import Dict, Any, List
+from typing import Dict, Any
 
-import json
-import time
+from utils.email import send_email
+from .extract import extract_api_meteorology, extract_api_exchangerate
+from .transform import alerta_climatica, alerta_tipo_cambio, indice_ivv
 
-# Cordenadas ciudades a monitorear
 
-cities = {
-    "Nueva York": {"lat": 40.7128, "lon": -74.0060, "moneda": "USD", "timezone": "America/New_York"},
-    "Londres": {"lat": 51.5074, "lon": -0.1278, "moneda": "GBP", "timezone": "Europe/London"},
-    "Tokio": {"lat": 35.6895, "lon": 139.6917, "moneda": "JPY", "timezone": "Asia/Tokyo"},
-    "São Paulo": {"lat": -23.5505, "lon": -46.6333, "moneda": "BRL", "timezone": "America/Sao_Paulo"},
-    "Sídney": {"lat": -33.8688, "lon": 151.2093, "moneda": "AUD", "timezone": "Australia/Sydney"}
-}
+def send_email_for_alerts(data: Dict[str, Any]) -> None:
+    for key, value in data.items():
+        for alerta in value.get("alertas", []):
+            if alerta.get("severidad") == "ALTA":
+                send_email("juanandresmolina16@gmail.com", f"[ALERTA] {key} - {alerta['tipo']}",
+                           f"Hubo una alerta de severidad baja en {key} relacionada con {alerta['tipo']}. Detalles: {alerta['mensaje']}")
 
-def load_data_apies_for_city(name_city: str, cities: Dict[str, Any]) -> Dict[str, Any]:
 
-    dict_meteorology = extract_api_meteorology(name_city, cities[f"{name_city}"])
-
-    dict_finanzas = extract_api_exchangerate(cities[f"{name_city}"]["moneda"])
-
+def load_data_apies_for_city(name_city: str, city: Dict[str, Any]) -> Dict[str, Any]:
+    dict_meteorology = extract_api_meteorology(name_city, city)
+    dict_finanzas = extract_api_exchangerate(city["moneda"])
     data_city = {**dict_meteorology, **dict_finanzas}
-
-    data_complete = indice_ivv(alerta_tipo_cambio(data_city),alerta_climatica(data_city), data_city)
-
+    data_complete = indice_ivv(alerta_tipo_cambio(data_city), alerta_climatica(data_city), data_city)
     return data_complete
 
-def create_list_load_data_cities(cities: Dict[str, Any]) -> List:
 
-    list_data_cities = []
-
-    for j in range(2):
-        for i in range(len(cities)):
-            try:
-                name_city = list(cities.keys())[i]
-                data_city = load_data_apies_for_city(name_city, cities)
-                list_data_cities.append(data_city)
-            except Exception as e:
-                print(f"No se pudo obtener datos para {name_city}: {e}")
-
-    return list_data_cities
-
-data_final = create_list_load_data_cities(cities)
-print(json.dumps(data_final, indent=4, ensure_ascii=False))
-    
-
-
-
-
-
-
-
-
+def create_list_load_data_cities(cities: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    cities_information: Dict[str, Dict[str, Any]] = {}
+    for key, value in cities.items():
+        cities_information[key] = load_data_apies_for_city(key, value)
+    send_email_for_alerts(cities_information)
+    return cities_information
