@@ -83,17 +83,15 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
             "ciudad": name_city,
             "clima": {
                 "temperatura_actual": data_meteorology['current']['temperature_2m'],
-                "pronostico_7_dias": get_pronostico_7_dias,
+                "pronostico_7_dias": get_pronostico_7_dias(data_meteorology),
                 "precipitacion": data_meteorology['daily']['precipitation_probability_max'][0],
                 "viento": data_meteorology['current']['wind_speed_10m'],
-                "uv": data_meteorology['daily']['uv_index_max'] 
+                "uv": data_meteorology['daily']['uv_index_max'][0]
             }
         }
 
-        # Usar json.dumps() con indent=4 para una salida formateada
-        salida_legible = json.dumps(data_meteorology, indent=4)
-        print(salida_legible)
-
+        print(json.dumps(dict_meteorology, indent=4))
+        return dict_meteorology
 
     except requests.exceptions.RequestException as e:
         print(f"❌ Error de conexión con la API: {e}")
