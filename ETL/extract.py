@@ -153,6 +153,8 @@ def extract_api_exchangerate() -> dict:
 # ---------------------------------------------------------------
 
 def extract_api_timezone() -> None:
+    """La función extract_api_timezone consulta la API worldtimeapi.org para obtener la hora local y la diferencia horaria con Bogotá para varias ciudades.
+    """
 
     ciudades = {
         "Nueva York": "America/New_York",
