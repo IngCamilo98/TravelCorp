@@ -1,3 +1,4 @@
+import os
 from typing import Dict, Any
 
 from utils.email import send_email
@@ -6,11 +7,13 @@ from .transform import alerta_climatica, alerta_tipo_cambio, indice_ivv
 
 
 def send_email_for_alerts(data: Dict[str, Any]) -> None:
+    notify_to = os.getenv("NOTIFY_TO").split(",") if os.getenv("NOTIFY_TO") else []
     for key, value in data.items():
         for alerta in value.get("alertas", []):
-            if alerta.get("severidad") == "ALTA":
-                send_email("juanandresmolina16@gmail.com", f"[ALERTA] {key} - {alerta['tipo']}",
-                           f"Hubo una alerta de severidad baja en {key} relacionada con {alerta['tipo']}. Detalles: {alerta['mensaje']}")
+            if alerta.get("severidad") == "BAJA":
+                for email in notify_to:
+                    send_email(email, f"[ALERTA] {key} - {alerta['tipo']}",
+                               f"Hubo una alerta de severidad alta en {key} relacionada con {alerta['tipo']}. Detalles: {alerta['mensaje']}")
 
 
 def load_data_apies_for_city(name_city: str, city: Dict[str, Any]) -> Dict[str, Any]:
