@@ -104,7 +104,8 @@ try:
     print("Aquí están algunas de las tasas de conversión más comunes:")
     
     # Ejemplos de monedas para mostrar
-    currencies_to_show = ["EUR", "MXN", "COP", "JPY", "GBP"]
+    currencies_to_show = ["USD", "GBP", "JPY", "BRL", "AUD"]
+    
     for currency in currencies_to_show:
         if currency in rates:
             print(f"- **{currency}:** {rates[currency]:.2f}")
@@ -120,7 +121,7 @@ except Exception as e:
 
   # ---------------------------------------------------------------
 #   Tercera API
-# B. API de Tipos de Cambio - ExchangeRate-API
+# C. API horarios paises - ExchangeRate-API
 # ---------------------------------------------------------------
 
 

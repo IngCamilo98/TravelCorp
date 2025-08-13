@@ -144,7 +144,44 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
 # ---------------------------------------------------------------
 
 def extract_api_exchangerate() -> dict:
-    
+
+    try:
+        url_exchangerate = (f"https://api.exchangerate-api.com"
+                            f"/v4"
+                            f"/latest"
+                            f"/USD"
+                            )
+
+        response = requests.get(url_exchangerate, timeout=10)
+        response.raise_for_status()  # Lanza error si status != 200
+        data_exchangerate = response.json()
+
+        # 1. Conversión USD a monedas locales
+        base_currency = data_exchangerate["base"]
+        rates = data_exchangerate["rates"]
+
+        print("### Conversión de USD a monedas locales 💵")
+        print(f"La tasa base es de **1 {base_currency}**.\n")
+        print("Aquí están algunas de las tasas de conversión más comunes:")
+        
+        # Ejemplos de monedas para mostrar
+        currencies_to_show = ["USD", "GBP", "JPY", "BRL", "AUD"]
+        
+        for currency in currencies_to_show:
+            if currency in rates:
+                print(f"- **{currency}:** {rates[currency]:.2f}")
+        
+        print(url_exchangerate)
+
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error de conexión con la API: {e}")
+    except ValueError as e:
+        print(f"⚠️ Datos incompletos o formato inesperado: {e}")
+    except Exception as e:
+        print(f"🚨 Error inesperado: {e}")
+
+
+    #     
     return None
 
 # ---------------------------------------------------------------
@@ -152,7 +189,7 @@ def extract_api_exchangerate() -> dict:
 # c. API time Zone - ExchangeRate-API
 # ---------------------------------------------------------------
 
-def extract_api_timezone() -> None:
+def extract_api_timezone() -> None: 
     """La función extract_api_timezone consulta la API worldtimeapi.org para obtener la hora local y la diferencia horaria con Bogotá para varias ciudades.
     """
 
@@ -207,7 +244,7 @@ def extract_api_timezone() -> None:
 dict_meteorology = extract_api_meteorology("Nueva York",cities["Nueva York"])
 #print(dict_meteorology)
 
-#extract_api_exchangerate()
+extract_api_exchangerate()
 
 #extract_api_timezone()
 
