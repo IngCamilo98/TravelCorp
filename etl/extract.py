@@ -132,9 +132,9 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
 # ---------------------------------------------------------------
 
 def extract_api_exchangerate(city_currency: str) -> Dict[str, Any]:
-    """La función extract_api_exchangerate consulta la API ExchangeRate-API para obtener información financiera sobre el tipo de cambio de una moneda específica respecto al dólar estadounidense (USD) y lo transfomra en un diccionario con los requerimints solicitados.
-
-
+    """La función extract_api_exchangerate consulta la API ExchangeRate-API para obtener información financiera sobre
+    el tipo de cambio de una moneda específica respecto al dólar estadounidense (USD) y lo transfomra en un diccionario
+    con los requerimints solicitados.
 
     Args:
         city_currency (str): Se requiere la nomenclatura de la moneda a consultar, por ejemplo: "BRL" para el Real Brasileño.
