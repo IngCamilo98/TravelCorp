@@ -16,3 +16,4 @@ Una vez que el entorno virtual esté activo, usa el siguiente comando para que p
 
 pip install -r requirements.txt
 
+
