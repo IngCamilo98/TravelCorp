@@ -17,6 +17,11 @@ cities = {
     "Sídney": {"lat": -33.8688, "lon": 151.2093, "currency": "AUD"}
 }
 
+def get_5days_history() -> Dict[str, Any]:
+    
+
+    return None
+
 def extract_api_exchangerate(city_currency: str)->Dict[str, Any]:
     
     # URL de la API de ExchangeRate-API
@@ -30,91 +35,46 @@ def extract_api_exchangerate(city_currency: str)->Dict[str, Any]:
     response = requests.get(url_exchangerate, timeout=10)
     response.raise_for_status()  # Lanza error si status != 200
     data_exchangerate = response.json()
-    
-    base_currency = data_exchangerate["base"]
+
+    # 1. tipo_de_cambio_actual USD/Moneda
     rates = data_exchangerate["rates"]
 
-    rate_currency = rates[city_currency]
-    print(rate_currency)
+    # 2. Tendecia de los últimos 5 días
+    today_rate_brl = data_exchangerate["rates"][city_currency]
+    today_date_str = data_exchangerate["date"]
+    today = datetime.strptime(today_date_str, "%Y-%m-%d").date()
 
-    
+    current_rate = today_rate_brl
+    historical_variations = []
+    historical_data = []
 
-    return None
-
-
-
-def mientras():
-
-    try:
-        url_exchangerate = (f"https://api.exchangerate-api.com"
-                            f"/v4"
-                            f"/latest"
-                            f"/USD"
-                            )
-
-        response = requests.get(url_exchangerate, timeout=10)
-        response.raise_for_status()  # Lanza error si status != 200
-        data_exchangerate = response.json()
-
-        # 1. Conversión USD a monedas locales
-        base_currency = data_exchangerate["base"]
-        rates = data_exchangerate["rates"]
-
-        print("### Conversión de USD a monedas locales 💵")
-        print(f"La tasa base es de **1 {base_currency}**.\n")
-        print("Aquí están algunas de las tasas de conversión más comunes:")
+    # Generar datos simulados para los últimos 5 días
+    for i in range(5):
+        date = today - timedelta(days=i)
+        variation_percent = random.uniform(-2, 2)
+        historical_variations.append(variation_percent)
         
-        # Ejemplos de monedas para mostrar
-        currencies_to_show = ["USD", "GBP", "JPY", "BRL", "AUD"]
-        
-        for currency in currencies_to_show:
-            if currency in rates:
-                print(f"- **{currency}:** {rates[currency]:.2f}")
+        # La tasa anterior se calcula a partir de la actual y la variación simulada
+        previous_rate = current_rate / (1 + (variation_percent / 100))
+        current_rate = previous_rate
 
-        # 2. Histórico últimos 5 días (simulado)
-        print("\n" + "---" + "\n")
-        print("### Histórico de los últimos 5 días (Simulado) 📈")
+    # Calcular el promedio de las variaciones para la tendencia
+    average_variation = sum(historical_variations) / len(historical_variations)
 
-        today_rate = rates.get("BRL")
-        today_date_str = data_exchangerate["date"]
+    if average_variation <= 1.5:
+        tendencia = "Estable"
+    else:
+        tendencia = "Volátil"
 
-        if today_rate and today_date_str:
-            print(f"Simulación del tipo de cambio USD a BRL para los últimos 5 días:\n")
-            
-            today = datetime.strptime(today_date_str, "%Y-%m-%d").date()
-            current_rate = today_rate
-
-            print("| Fecha      | Tasa de Cambio (Simulada) | Variación |")
-            print("| :--------- | :------------------------ | :---: |")
-
-            # Generar datos simulados para los últimos 5 días
-            for i in range(5):
-                date = today - timedelta(days=i)
-                # Calcular una variación aleatoria entre -2% y +2%
-                variation = random.uniform(-0.02, 0.02)
-
-                # Ajustar la tasa para el día anterior (simulación inversa)
-                if i > 0:
-                    previous_rate = current_rate / (1 + variation)
-                    current_rate = previous_rate
-                    
-                variation_percent = f"{variation * 100:+.2f}%"
-                
-                print(f"| {date.strftime('%Y-%m-%d')} | {current_rate:.2f} | {variation_percent} |")
+    finanzas = {
+        "tipo_de_cambio_actual":rates[city_currency],
+        "variacion_diaria": average_variation,
+        "tendencia_5_dias": tendencia,
+    }
 
 
+    return finanzas
 
-
-        else:
-            print("⚠️ No se pudo simular el historial, faltan datos de la tasa de cambio o la fecha.")
-
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error de conexión con la API: {e}")
-    except ValueError as e:
-        print(f"⚠️ Datos incompletos o formato inesperado: {e}")
-    except Exception as e:
-        print(f"🚨 Error inesperado: {e}")
-
-    return None
-
-extract_api_exchangerate("BRL")
+finanzas = extract_api_exchangerate("BRL")
+pretty_json = json.dumps(finanzas, indent=4)
+print(pretty_json)
