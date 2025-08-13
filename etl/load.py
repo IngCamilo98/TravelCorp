@@ -1,6 +1,5 @@
 from extract import extract_api_meteorology, extract_api_exchangerate
-from transform import alerta_climatica
-from transform import alerta_tipo_cambio, indice_ivv
+from transform import alerta_climatica, alerta_tipo_cambio, indice_ivv  
 from typing import Dict, Any    
 
 import json
@@ -18,17 +17,18 @@ cities = {
 name_cities = list(cities.keys())
 
 dict_meteorology = extract_api_meteorology(name_cities[0], cities["Nueva York"])
-#print(dict_meteorology)
+
 dict_finanzas = extract_api_exchangerate(cities["Nueva York"]["moneda"])
-#print(dict_finanzas)
+
 data_city = {**dict_meteorology, **dict_finanzas}
-print(json.dumps(data_city, indent=4, ensure_ascii=False))
 
-option = alerta_climatica(data_city)
-print(f"Alerta climática: {option}")
+data_complete = indice_ivv(alerta_tipo_cambio(data_city),alerta_climatica(data_city), data_city)
 
-option = alerta_tipo_cambio(data_city)
-print(f"Alerta tipo de cambio: {option}")
+
+print(json.dumps(data_complete, indent=4, ensure_ascii=False))
+
+
+
 
 
 

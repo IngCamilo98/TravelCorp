@@ -277,6 +277,7 @@ dict_finanzas = extract_api_exchangerate("BRL")
 
 merged_dict = {**dict_meteorology, **dict_finanzas}
 
+
 #print(json.dumps(merged_dict, indent=4, ensure_ascii=False))
 
 
