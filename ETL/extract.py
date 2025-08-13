@@ -17,7 +17,8 @@ cities = {
 # A. API Meteorológica - Open-Mete
 # ---------------------------------------------------------------
 
-def extract_api_meteorology(dic: Dict[str, Any]) -> Dict[str, Any]:
+def extract_api_meteorology() -> Dict[str, Any]:
+
     # URL con parámetros necesarios
     lat = 40.7128
     lon = -74.0060
@@ -175,9 +176,9 @@ def extract_api_timezone() -> dict:
     return None
 
 
-#extract_api_meteo()
+extract_api_meteorology()
 #extract_api_exchangerate()
-extract_api_timezone()
+#extract_api_timezone()
 
 
 
