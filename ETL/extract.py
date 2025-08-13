@@ -2,6 +2,7 @@ import requests
 import json
 import time
 from typing import Dict, Any
+from datetime import datetime, timezone
 # Cordenadas ciudades a monitorear
 
 cities = {
@@ -17,11 +18,85 @@ cities = {
 # A. API Meteorológica - Open-Mete
 # ---------------------------------------------------------------
 
-def extract_api_meteorology() -> Dict[str, Any]:
+def get_format_timestamp(times_stamp: str) -> str:
+    """La función get_format_timestamp toma una cadena de fecha y hora (times_stamp) en formato ISO (por ejemplo, "2025-08-12T19:30") y la convierte en un objeto datetime con zona horaria UTC.
+Luego, devuelve esa fecha y hora en formato ISO 8601, incluyendo la información de la zona horaria (+00:00 para UTC).
 
-    # URL con parámetros necesarios
-    lat = 40.7128
-    lon = -74.0060
+    Args:
+        times_stamp (str): Dato timesstamp en formato string
+
+    Returns:
+        str: Dato timesstamp en formato ISO 8601 con zona horaria UTC
+    """
+
+    # 1. Convertir la cadena a un objeto datetime
+    # Se usa strptime() para parsear la cadena con el formato correcto.
+    # El formato "%Y-%m-%dT%H:%M" coincide con '2025-08-12T19:30'
+    fecha_hora = datetime.fromisoformat(times_stamp)
+
+    # 2. Agregar la zona horaria UTC
+    # Se le dice al objeto datetime que está en la zona horaria UTC.
+    # La "Z" en el formato ISO 8601 representa UTC.
+    fecha_hora_utc = fecha_hora.replace(tzinfo=timezone.utc)
+
+    # 3. Formatear el objeto datetime al formato ISO 8601
+    # La función isoformat() lo hace automáticamente.
+    timestamp_formateado = fecha_hora_utc.isoformat()
+
+    # Imprimir el resultado final
+    #print(f"Timestamp original: {times_stamp}")
+    #print(f"Timestamp formateado (con Z): {timestamp_formateado}")
+
+    return timestamp_formateado
+
+def get_pronostico_7_dias(data_meteorology : Dict) -> Dict:
+
+    """La función get_pronostico_7_dias toma como entrada un diccionario con datos meteorológicos (de la API Open-Meteo) y construye una lista de diccionarios, cada uno representando el pronóstico diario para los próximos 7 días.
+
+    Args:
+        data_meteorology (Dict): datos meteorológicos (de la API Open-Meteo)
+
+    Returns:
+        _type_: Diccionario con el pronóstico de 7 días en el formato solicitado en los requerimientos.
+    """
+
+    fechas = data_meteorology['daily']['time']
+    temp_minimas = data_meteorology['daily']['temperature_2m_min']
+    temp_maximas = data_meteorology['daily']['temperature_2m_max']
+    probabilidad_precipitacion = data_meteorology['daily']['precipitation_probability_max']
+
+    # --- Combinar las listas en el formato deseado ---
+    pronostico_7_dias = []
+
+    # zip() itera sobre todas las listas en paralelo
+    for fecha, t_max, t_min, prec in zip(fechas, temp_maximas, temp_minimas, probabilidad_precipitacion):
+        dia = {
+            "fecha": fecha,
+            "temp_max": t_max,
+            "temp_min": t_min,
+            "precipitacion": prec
+        }
+        pronostico_7_dias.append(dia)
+
+    return pronostico_7_dias
+
+def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, Any]:
+
+    """La función extract_api_meteorology consulta la API meteorológica Open-Meteo para una ciudad específica y devuelve un diccionario con información solicitado del clima en el formato de diccionario solicitado.
+
+    Raises:
+        ValueError: _description_
+    
+    Args:
+        name_city (str): Nombre de la ciudad a buscar la información
+        city (Dict[str, Any]): Diccionario con latitud y longitud de la ciudad
+
+    Returns:
+        _type_: Diccionario con la información del clima en el formato solicitado.
+    """
+
+    lat = city["lat"]
+    lon = city["lon"]
 
     url_meteo = (
         f"https://api.open-meteo.com/v1/forecast"
@@ -31,47 +106,29 @@ def extract_api_meteorology() -> Dict[str, Any]:
         f"&timezone=auto"
         f"&forecast_days=7"
     )
+
     try:
         response = requests.get(url_meteo, timeout=10)
         response.raise_for_status()  # Lanza error si status != 200
-        data_meteo = response.json()
+        data_meteorology = response.json()
         # Validar que el JSON tiene los datos esperados
-        if "current" not in data_meteo:
+        if "current" not in data_meteorology:
             raise ValueError("Respuesta incompleta: falta 'current' en la API")
 
-        print("------------------------------------------------------------------")
-        print("Datos obtenidos correctamente ✅\n")
-        print("Ciudad = Nueva York")
-        print("Ubicación:", data_meteo.get("latitude"), data_meteo.get("longitude"))
-        print("Temperatura actual:", data_meteo["current"].get("temperature_2m"), "°C")
-        print("Pronostico 7 dias:")
-        print("------------------------------------------------------------------")
-        # Extraer las listas de datos diarios
-        fechas = data_meteo['daily']['time']
-        temp_minimas = data_meteo['daily']['temperature_2m_min']
-        temp_maximas = data_meteo['daily']['temperature_2m_max']
-        probabilidad_precipitacion = data_meteo['daily']['precipitation_probability_max']
-        indices_uv = data_meteo['daily']['uv_index_max']    
-        # --- Imprimir día y pronóstico de temperatura ---
-        print("--- Pronóstico de Temperatura ---")
-        for i in range(len(fechas)):
-            print(f"El pronóstico de temperatura para el {fechas[i]} es de {temp_minimas[i]}°C a {temp_maximas[i]}°C.")
+        dict_meteorology = {
+            "timestamp": get_format_timestamp(data_meteorology['current']['time']),
+            "ciudad": name_city,
+            "clima": {
+                "temperatura_actual": data_meteorology['current']['temperature_2m'],
+                "pronostico_7_dias": get_pronostico_7_dias(data_meteorology),
+                "precipitacion": data_meteorology['daily']['precipitation_probability_max'][0],
+                "viento": data_meteorology['current']['wind_speed_10m'],
+                "uv": data_meteorology['daily']['uv_index_max'][0]
+            }
+        }
 
-        print("\n" + "="*40 + "\n")
-
-        # --- Imprimir día y probabilidad de precipitación ---
-        print("--- Probabilidad de Precipitación ---")
-        for i in range(len(fechas)):
-            print(f"La probabilidad de precipitación para el {fechas[i]} es del {probabilidad_precipitacion[i]}%.")
-        
-        print("\n" + "="*40 + "\n")
-
-        # --- Imprimir día e índice UV ---
-        print("--- Índice UV ---")
-        for i in range(len(fechas)):
-            print(f"El índice UV máximo para el {fechas[i]} es de {indices_uv[i]}.")    
-        print("------------------------------------------------------------------")
-        print("Viento actual:", data_meteo["current"].get("wind_speed_10m"), "km/h")
+        print(json.dumps(dict_meteorology, indent=4))
+        return dict_meteorology
 
     except requests.exceptions.RequestException as e:
         print(f"❌ Error de conexión con la API: {e}")
@@ -176,7 +233,7 @@ def extract_api_timezone() -> dict:
     return None
 
 
-extract_api_meteorology()
+extract_api_meteorology("Nueva York",cities["Nueva York"])
 #extract_api_exchangerate()
 #extract_api_timezone()
 
