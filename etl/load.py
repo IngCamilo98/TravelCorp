@@ -10,7 +10,7 @@ def send_email_for_alerts(data: Dict[str, Any]) -> None:
     notify_to = os.getenv("NOTIFY_TO").split(",") if os.getenv("NOTIFY_TO") else []
     for key, value in data.items():
         for alerta in value.get("alertas", []):
-            if alerta.get("severidad") == "BAJA":
+            if alerta.get("severidad") == "ALTA":
                 for email in notify_to:
                     send_email(email, f"[ALERTA] {key} - {alerta['tipo']}",
                                f"Hubo una alerta de severidad alta en {key} relacionada con {alerta['tipo']}. Detalles: {alerta['mensaje']}")

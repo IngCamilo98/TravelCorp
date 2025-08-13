@@ -1,0 +1,2294 @@
+[
+    {
+        "Nueva York": {
+            "timestamp": "2025-08-13T18:45:00+00:00",
+            "ciudad": "Nueva York",
+            "clima": {
+                "temperatura_actual": 26.7,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-13",
+                        "temp_max": 32.0,
+                        "temp_min": 23.1,
+                        "precipitacion": 51
+                    },
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 30.6,
+                        "temp_min": 22.2,
+                        "precipitacion": 26
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 31.4,
+                        "temp_min": 21.8,
+                        "precipitacion": 10
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 26.6,
+                        "temp_min": 22.8,
+                        "precipitacion": 9
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 30.3,
+                        "temp_min": 22.3,
+                        "precipitacion": 19
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 31.6,
+                        "temp_min": 22.7,
+                        "precipitacion": 19
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 27.3,
+                        "temp_min": 22.3,
+                        "precipitacion": 25
+                    }
+                ],
+                "precipitacion": 51,
+                "viento": 8.2,
+                "uv": 7.35
+            },
+            "tipo_de_cambio_actual": 1,
+            "variacion_diaria": 0.17249226049218577,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "Londres": {
+            "timestamp": "2025-08-13T23:45:00+00:00",
+            "ciudad": "Londres",
+            "clima": {
+                "temperatura_actual": 19.7,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-13",
+                        "temp_max": 25.9,
+                        "temp_min": 18.7,
+                        "precipitacion": 25
+                    },
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 27.5,
+                        "temp_min": 17.3,
+                        "precipitacion": 13
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 29.4,
+                        "temp_min": 18.6,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 25.7,
+                        "temp_min": 16.7,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 24.7,
+                        "temp_min": 13.9,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 24.7,
+                        "temp_min": 15.6,
+                        "precipitacion": 3
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 27.4,
+                        "temp_min": 16.7,
+                        "precipitacion": 3
+                    }
+                ],
+                "precipitacion": 25,
+                "viento": 11.2,
+                "uv": 4.5
+            },
+            "tipo_de_cambio_actual": 0.741,
+            "variacion_diaria": 0.7369746636168251,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "Tokio": {
+            "timestamp": "2025-08-14T07:45:00+00:00",
+            "ciudad": "Tokio",
+            "clima": {
+                "temperatura_actual": 24.4,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 29.6,
+                        "temp_min": 23.4,
+                        "precipitacion": 3
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 31.6,
+                        "temp_min": 23.7,
+                        "precipitacion": 20
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 30.2,
+                        "temp_min": 25.0,
+                        "precipitacion": 35
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 33.7,
+                        "temp_min": 24.7,
+                        "precipitacion": 15
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 35.6,
+                        "temp_min": 25.5,
+                        "precipitacion": 19
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 34.9,
+                        "temp_min": 25.6,
+                        "precipitacion": 20
+                    },
+                    {
+                        "fecha": "2025-08-20",
+                        "temp_max": 35.8,
+                        "temp_min": 24.9,
+                        "precipitacion": 8
+                    }
+                ],
+                "precipitacion": 3,
+                "viento": 1.5,
+                "uv": 7.75
+            },
+            "tipo_de_cambio_actual": 147.98,
+            "variacion_diaria": -0.09625998996939548,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "São Paulo": {
+            "timestamp": "2025-08-13T19:45:00+00:00",
+            "ciudad": "São Paulo",
+            "clima": {
+                "temperatura_actual": 18.8,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-13",
+                        "temp_max": 25.4,
+                        "temp_min": 8.6,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 19.1,
+                        "temp_min": 9.9,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 19.6,
+                        "temp_min": 12.4,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 23.4,
+                        "temp_min": 13.9,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 25.1,
+                        "temp_min": 14.2,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 23.4,
+                        "temp_min": 13.8,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 26.6,
+                        "temp_min": 11.9,
+                        "precipitacion": 0
+                    }
+                ],
+                "precipitacion": 0,
+                "viento": 3.5,
+                "uv": 6.35
+            },
+            "tipo_de_cambio_actual": 5.44,
+            "variacion_diaria": -0.25247864521599467,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "Sídney": {
+            "timestamp": "2025-08-14T08:45:00+00:00",
+            "ciudad": "Sídney",
+            "clima": {
+                "temperatura_actual": 10.9,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 14.9,
+                        "temp_min": 9.7,
+                        "precipitacion": 43
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 18.1,
+                        "temp_min": 9.0,
+                        "precipitacion": 15
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 17.4,
+                        "temp_min": 7.7,
+                        "precipitacion": 21
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 16.0,
+                        "temp_min": 3.2,
+                        "precipitacion": 3
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 11.8,
+                        "temp_min": 5.3,
+                        "precipitacion": 20
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 15.8,
+                        "temp_min": 6.1,
+                        "precipitacion": 28
+                    },
+                    {
+                        "fecha": "2025-08-20",
+                        "temp_max": 17.9,
+                        "temp_min": 5.9,
+                        "precipitacion": 28
+                    }
+                ],
+                "precipitacion": 43,
+                "viento": 9.7,
+                "uv": 4.4
+            },
+            "tipo_de_cambio_actual": 1.53,
+            "variacion_diaria": -0.19389388829449014,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        }
+    },
+    {
+        "Nueva York": {
+            "timestamp": "2025-08-13T18:45:00+00:00",
+            "ciudad": "Nueva York",
+            "clima": {
+                "temperatura_actual": 26.7,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-13",
+                        "temp_max": 32.0,
+                        "temp_min": 23.1,
+                        "precipitacion": 51
+                    },
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 30.6,
+                        "temp_min": 22.2,
+                        "precipitacion": 26
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 31.4,
+                        "temp_min": 21.8,
+                        "precipitacion": 10
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 26.6,
+                        "temp_min": 22.8,
+                        "precipitacion": 9
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 30.3,
+                        "temp_min": 22.3,
+                        "precipitacion": 19
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 31.6,
+                        "temp_min": 22.7,
+                        "precipitacion": 19
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 27.3,
+                        "temp_min": 22.3,
+                        "precipitacion": 25
+                    }
+                ],
+                "precipitacion": 51,
+                "viento": 8.2,
+                "uv": 7.35
+            },
+            "tipo_de_cambio_actual": 1,
+            "variacion_diaria": -0.010791074563130021,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "Londres": {
+            "timestamp": "2025-08-13T23:45:00+00:00",
+            "ciudad": "Londres",
+            "clima": {
+                "temperatura_actual": 19.7,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-13",
+                        "temp_max": 25.9,
+                        "temp_min": 18.7,
+                        "precipitacion": 25
+                    },
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 27.5,
+                        "temp_min": 17.3,
+                        "precipitacion": 13
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 29.4,
+                        "temp_min": 18.6,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 25.7,
+                        "temp_min": 16.7,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 24.7,
+                        "temp_min": 13.9,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 24.7,
+                        "temp_min": 15.6,
+                        "precipitacion": 3
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 27.4,
+                        "temp_min": 16.7,
+                        "precipitacion": 3
+                    }
+                ],
+                "precipitacion": 25,
+                "viento": 11.2,
+                "uv": 4.5
+            },
+            "tipo_de_cambio_actual": 0.741,
+            "variacion_diaria": -0.1909546714630622,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "Tokio": {
+            "timestamp": "2025-08-14T07:45:00+00:00",
+            "ciudad": "Tokio",
+            "clima": {
+                "temperatura_actual": 24.4,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 29.6,
+                        "temp_min": 23.4,
+                        "precipitacion": 3
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 31.6,
+                        "temp_min": 23.7,
+                        "precipitacion": 20
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 30.2,
+                        "temp_min": 25.0,
+                        "precipitacion": 35
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 33.7,
+                        "temp_min": 24.7,
+                        "precipitacion": 15
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 35.6,
+                        "temp_min": 25.5,
+                        "precipitacion": 19
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 34.9,
+                        "temp_min": 25.6,
+                        "precipitacion": 20
+                    },
+                    {
+                        "fecha": "2025-08-20",
+                        "temp_max": 35.8,
+                        "temp_min": 24.9,
+                        "precipitacion": 8
+                    }
+                ],
+                "precipitacion": 3,
+                "viento": 1.5,
+                "uv": 7.75
+            },
+            "tipo_de_cambio_actual": 147.98,
+            "variacion_diaria": 0.07245469630086125,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "São Paulo": {
+            "timestamp": "2025-08-13T19:45:00+00:00",
+            "ciudad": "São Paulo",
+            "clima": {
+                "temperatura_actual": 18.8,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-13",
+                        "temp_max": 25.4,
+                        "temp_min": 8.6,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 19.1,
+                        "temp_min": 9.9,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 19.6,
+                        "temp_min": 12.4,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 23.4,
+                        "temp_min": 13.9,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 25.1,
+                        "temp_min": 14.2,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 23.4,
+                        "temp_min": 13.8,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 26.6,
+                        "temp_min": 11.9,
+                        "precipitacion": 0
+                    }
+                ],
+                "precipitacion": 0,
+                "viento": 3.5,
+                "uv": 6.35
+            },
+            "tipo_de_cambio_actual": 5.44,
+            "variacion_diaria": 0.2513816988969144,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "Sídney": {
+            "timestamp": "2025-08-14T08:45:00+00:00",
+            "ciudad": "Sídney",
+            "clima": {
+                "temperatura_actual": 10.9,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 14.9,
+                        "temp_min": 9.7,
+                        "precipitacion": 43
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 18.1,
+                        "temp_min": 9.0,
+                        "precipitacion": 15
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 17.4,
+                        "temp_min": 7.7,
+                        "precipitacion": 21
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 16.0,
+                        "temp_min": 3.2,
+                        "precipitacion": 3
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 11.8,
+                        "temp_min": 5.3,
+                        "precipitacion": 20
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 15.8,
+                        "temp_min": 6.1,
+                        "precipitacion": 28
+                    },
+                    {
+                        "fecha": "2025-08-20",
+                        "temp_max": 17.9,
+                        "temp_min": 5.9,
+                        "precipitacion": 28
+                    }
+                ],
+                "precipitacion": 43,
+                "viento": 9.7,
+                "uv": 4.4
+            },
+            "tipo_de_cambio_actual": 1.53,
+            "variacion_diaria": -0.2653347666628886,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        }
+    },
+    {
+        "Nueva York": {
+            "timestamp": "2025-08-13T18:45:00+00:00",
+            "ciudad": "Nueva York",
+            "clima": {
+                "temperatura_actual": 26.7,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-13",
+                        "temp_max": 32.0,
+                        "temp_min": 23.1,
+                        "precipitacion": 51
+                    },
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 30.6,
+                        "temp_min": 22.2,
+                        "precipitacion": 26
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 31.4,
+                        "temp_min": 21.8,
+                        "precipitacion": 10
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 26.6,
+                        "temp_min": 22.8,
+                        "precipitacion": 9
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 30.3,
+                        "temp_min": 22.3,
+                        "precipitacion": 19
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 31.6,
+                        "temp_min": 22.7,
+                        "precipitacion": 19
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 27.3,
+                        "temp_min": 22.3,
+                        "precipitacion": 25
+                    }
+                ],
+                "precipitacion": 51,
+                "viento": 8.2,
+                "uv": 7.35
+            },
+            "tipo_de_cambio_actual": 1,
+            "variacion_diaria": 0.2879738098521313,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "Londres": {
+            "timestamp": "2025-08-13T23:45:00+00:00",
+            "ciudad": "Londres",
+            "clima": {
+                "temperatura_actual": 19.7,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-13",
+                        "temp_max": 25.9,
+                        "temp_min": 18.7,
+                        "precipitacion": 25
+                    },
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 27.5,
+                        "temp_min": 17.3,
+                        "precipitacion": 13
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 29.4,
+                        "temp_min": 18.6,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 25.7,
+                        "temp_min": 16.7,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 24.7,
+                        "temp_min": 13.9,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 24.7,
+                        "temp_min": 15.6,
+                        "precipitacion": 3
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 27.4,
+                        "temp_min": 16.7,
+                        "precipitacion": 3
+                    }
+                ],
+                "precipitacion": 25,
+                "viento": 11.2,
+                "uv": 4.5
+            },
+            "tipo_de_cambio_actual": 0.741,
+            "variacion_diaria": 1.083884386868866,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "Tokio": {
+            "timestamp": "2025-08-14T07:45:00+00:00",
+            "ciudad": "Tokio",
+            "clima": {
+                "temperatura_actual": 24.4,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 29.6,
+                        "temp_min": 23.4,
+                        "precipitacion": 3
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 31.6,
+                        "temp_min": 23.7,
+                        "precipitacion": 20
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 30.2,
+                        "temp_min": 25.0,
+                        "precipitacion": 35
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 33.7,
+                        "temp_min": 24.7,
+                        "precipitacion": 15
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 35.6,
+                        "temp_min": 25.5,
+                        "precipitacion": 19
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 34.9,
+                        "temp_min": 25.6,
+                        "precipitacion": 20
+                    },
+                    {
+                        "fecha": "2025-08-20",
+                        "temp_max": 35.8,
+                        "temp_min": 24.9,
+                        "precipitacion": 8
+                    }
+                ],
+                "precipitacion": 3,
+                "viento": 1.5,
+                "uv": 7.75
+            },
+            "tipo_de_cambio_actual": 147.98,
+            "variacion_diaria": -0.06501590389682015,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "São Paulo": {
+            "timestamp": "2025-08-13T19:45:00+00:00",
+            "ciudad": "São Paulo",
+            "clima": {
+                "temperatura_actual": 18.8,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-13",
+                        "temp_max": 25.4,
+                        "temp_min": 8.6,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 19.1,
+                        "temp_min": 9.9,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 19.6,
+                        "temp_min": 12.4,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 23.4,
+                        "temp_min": 13.9,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 25.1,
+                        "temp_min": 14.2,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 23.4,
+                        "temp_min": 13.8,
+                        "precipitacion": 0
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 26.6,
+                        "temp_min": 11.9,
+                        "precipitacion": 0
+                    }
+                ],
+                "precipitacion": 0,
+                "viento": 3.5,
+                "uv": 6.35
+            },
+            "tipo_de_cambio_actual": 5.44,
+            "variacion_diaria": 0.1428771401101545,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        },
+        "Sídney": {
+            "timestamp": "2025-08-14T08:45:00+00:00",
+            "ciudad": "Sídney",
+            "clima": {
+                "temperatura_actual": 10.9,
+                "pronostico_7_dias": [
+                    {
+                        "fecha": "2025-08-14",
+                        "temp_max": 14.9,
+                        "temp_min": 9.7,
+                        "precipitacion": 43
+                    },
+                    {
+                        "fecha": "2025-08-15",
+                        "temp_max": 18.1,
+                        "temp_min": 9.0,
+                        "precipitacion": 15
+                    },
+                    {
+                        "fecha": "2025-08-16",
+                        "temp_max": 17.4,
+                        "temp_min": 7.7,
+                        "precipitacion": 21
+                    },
+                    {
+                        "fecha": "2025-08-17",
+                        "temp_max": 16.0,
+                        "temp_min": 3.2,
+                        "precipitacion": 3
+                    },
+                    {
+                        "fecha": "2025-08-18",
+                        "temp_max": 11.8,
+                        "temp_min": 5.3,
+                        "precipitacion": 20
+                    },
+                    {
+                        "fecha": "2025-08-19",
+                        "temp_max": 15.8,
+                        "temp_min": 6.1,
+                        "precipitacion": 28
+                    },
+                    {
+                        "fecha": "2025-08-20",
+                        "temp_max": 17.9,
+                        "temp_min": 5.9,
+                        "precipitacion": 28
+                    }
+                ],
+                "precipitacion": 43,
+                "viento": 9.7,
+                "uv": 4.4
+            },
+            "tipo_de_cambio_actual": 1.53,
+            "variacion_diaria": 0.07175130956401325,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estab dentro de lo establecido"
+                }
+            ]
+        }
+    },
+    {
+        "Nueva York": {
+            "timestamp": "2025-08-13T19:00:00+00:00",
+            "ciudad": "Nueva York",
+            "clima": {
+                "temperatura_actual": 26.6,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-13",
+                            "temp_max": 32.0,
+                            "temp_min": 23.1,
+                            "precipitacion": 62
+                        },
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 30.6,
+                            "temp_min": 22.2,
+                            "precipitacion": 17
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 31.4,
+                            "temp_min": 21.8,
+                            "precipitacion": 10
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 26.6,
+                            "temp_min": 22.8,
+                            "precipitacion": 9
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 30.3,
+                            "temp_min": 22.3,
+                            "precipitacion": 19
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 31.6,
+                            "temp_min": 22.7,
+                            "precipitacion": 19
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 27.3,
+                            "temp_min": 22.3,
+                            "precipitacion": 25
+                        }
+                    ]
+                },
+                "precipitacion": 62,
+                "viento": 7.8,
+                "uv": 7.35
+            },
+            "tipo_de_cambio_actual": 1,
+            "variacion_diaria": 0.15251392922770232,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "Londres": {
+            "timestamp": "2025-08-14T00:00:00+00:00",
+            "ciudad": "Londres",
+            "clima": {
+                "temperatura_actual": 19.7,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 27.5,
+                            "temp_min": 17.3,
+                            "precipitacion": 13
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 29.4,
+                            "temp_min": 18.6,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 25.7,
+                            "temp_min": 16.7,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 24.7,
+                            "temp_min": 13.9,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 24.7,
+                            "temp_min": 15.6,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 27.4,
+                            "temp_min": 16.7,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-20",
+                            "temp_max": 26.4,
+                            "temp_min": 16.0,
+                            "precipitacion": 14
+                        }
+                    ]
+                },
+                "precipitacion": 13,
+                "viento": 11.1,
+                "uv": 5.45
+            },
+            "tipo_de_cambio_actual": 0.741,
+            "variacion_diaria": -0.015105160663200667,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "Tokio": {
+            "timestamp": "2025-08-14T08:00:00+00:00",
+            "ciudad": "Tokio",
+            "clima": {
+                "temperatura_actual": 24.5,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 29.6,
+                            "temp_min": 23.4,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 31.6,
+                            "temp_min": 23.7,
+                            "precipitacion": 20
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 30.2,
+                            "temp_min": 25.0,
+                            "precipitacion": 35
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 33.7,
+                            "temp_min": 24.7,
+                            "precipitacion": 15
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 35.6,
+                            "temp_min": 25.5,
+                            "precipitacion": 19
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 34.9,
+                            "temp_min": 25.6,
+                            "precipitacion": 20
+                        },
+                        {
+                            "fecha": "2025-08-20",
+                            "temp_max": 35.8,
+                            "temp_min": 24.9,
+                            "precipitacion": 8
+                        }
+                    ]
+                },
+                "precipitacion": 3,
+                "viento": 1.5,
+                "uv": 7.75
+            },
+            "tipo_de_cambio_actual": 147.98,
+            "variacion_diaria": -0.20636832653110293,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "São Paulo": {
+            "timestamp": "2025-08-13T20:00:00+00:00",
+            "ciudad": "São Paulo",
+            "clima": {
+                "temperatura_actual": 18.4,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-13",
+                            "temp_max": 25.4,
+                            "temp_min": 8.6,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 19.1,
+                            "temp_min": 9.9,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 19.6,
+                            "temp_min": 12.4,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 23.4,
+                            "temp_min": 13.9,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 25.1,
+                            "temp_min": 14.2,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 23.4,
+                            "temp_min": 13.8,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 26.6,
+                            "temp_min": 11.9,
+                            "precipitacion": 0
+                        }
+                    ]
+                },
+                "precipitacion": 0,
+                "viento": 3.4,
+                "uv": 6.35
+            },
+            "tipo_de_cambio_actual": 5.44,
+            "variacion_diaria": 0.19607948514771295,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "Sídney": {
+            "timestamp": "2025-08-14T09:00:00+00:00",
+            "ciudad": "Sídney",
+            "clima": {
+                "temperatura_actual": 11.1,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 14.9,
+                            "temp_min": 9.7,
+                            "precipitacion": 43
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 18.1,
+                            "temp_min": 9.0,
+                            "precipitacion": 15
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 17.4,
+                            "temp_min": 7.7,
+                            "precipitacion": 21
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 16.0,
+                            "temp_min": 3.2,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 11.8,
+                            "temp_min": 5.3,
+                            "precipitacion": 20
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 15.8,
+                            "temp_min": 6.1,
+                            "precipitacion": 28
+                        },
+                        {
+                            "fecha": "2025-08-20",
+                            "temp_max": 17.9,
+                            "temp_min": 5.9,
+                            "precipitacion": 28
+                        }
+                    ]
+                },
+                "precipitacion": 43,
+                "viento": 10.0,
+                "uv": 4.4
+            },
+            "tipo_de_cambio_actual": 1.53,
+            "variacion_diaria": -0.2572025574052718,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        }
+    },
+    {
+        "Nueva York": {
+            "timestamp": "2025-08-13T19:00:00+00:00",
+            "ciudad": "Nueva York",
+            "clima": {
+                "temperatura_actual": 26.6,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-13",
+                            "temp_max": 32.0,
+                            "temp_min": 23.1,
+                            "precipitacion": 62
+                        },
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 30.6,
+                            "temp_min": 22.2,
+                            "precipitacion": 17
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 31.4,
+                            "temp_min": 21.8,
+                            "precipitacion": 10
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 26.6,
+                            "temp_min": 22.8,
+                            "precipitacion": 9
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 30.3,
+                            "temp_min": 22.3,
+                            "precipitacion": 19
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 31.6,
+                            "temp_min": 22.7,
+                            "precipitacion": 19
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 27.3,
+                            "temp_min": 22.3,
+                            "precipitacion": 25
+                        }
+                    ]
+                },
+                "precipitacion": 62,
+                "viento": 7.8,
+                "uv": 7.35
+            },
+            "tipo_de_cambio_actual": 1,
+            "variacion_diaria": 0.8309278141889582,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "Londres": {
+            "timestamp": "2025-08-14T00:00:00+00:00",
+            "ciudad": "Londres",
+            "clima": {
+                "temperatura_actual": 19.7,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 27.5,
+                            "temp_min": 17.3,
+                            "precipitacion": 13
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 29.4,
+                            "temp_min": 18.6,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 25.7,
+                            "temp_min": 16.7,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 24.7,
+                            "temp_min": 13.9,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 24.7,
+                            "temp_min": 15.6,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 27.4,
+                            "temp_min": 16.7,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-20",
+                            "temp_max": 26.4,
+                            "temp_min": 16.0,
+                            "precipitacion": 14
+                        }
+                    ]
+                },
+                "precipitacion": 13,
+                "viento": 11.1,
+                "uv": 5.45
+            },
+            "tipo_de_cambio_actual": 0.741,
+            "variacion_diaria": 0.2914077058665286,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "Tokio": {
+            "timestamp": "2025-08-14T08:00:00+00:00",
+            "ciudad": "Tokio",
+            "clima": {
+                "temperatura_actual": 24.5,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 29.6,
+                            "temp_min": 23.4,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 31.6,
+                            "temp_min": 23.7,
+                            "precipitacion": 20
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 30.2,
+                            "temp_min": 25.0,
+                            "precipitacion": 35
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 33.7,
+                            "temp_min": 24.7,
+                            "precipitacion": 15
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 35.6,
+                            "temp_min": 25.5,
+                            "precipitacion": 19
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 34.9,
+                            "temp_min": 25.6,
+                            "precipitacion": 20
+                        },
+                        {
+                            "fecha": "2025-08-20",
+                            "temp_max": 35.8,
+                            "temp_min": 24.9,
+                            "precipitacion": 8
+                        }
+                    ]
+                },
+                "precipitacion": 3,
+                "viento": 1.5,
+                "uv": 7.75
+            },
+            "tipo_de_cambio_actual": 147.98,
+            "variacion_diaria": 0.41615862764139894,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "São Paulo": {
+            "timestamp": "2025-08-13T20:00:00+00:00",
+            "ciudad": "São Paulo",
+            "clima": {
+                "temperatura_actual": 18.4,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-13",
+                            "temp_max": 25.4,
+                            "temp_min": 8.6,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 19.1,
+                            "temp_min": 9.9,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 19.6,
+                            "temp_min": 12.4,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 23.4,
+                            "temp_min": 13.9,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 25.1,
+                            "temp_min": 14.2,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 23.4,
+                            "temp_min": 13.8,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 26.6,
+                            "temp_min": 11.9,
+                            "precipitacion": 0
+                        }
+                    ]
+                },
+                "precipitacion": 0,
+                "viento": 3.4,
+                "uv": 6.35
+            },
+            "tipo_de_cambio_actual": 5.44,
+            "variacion_diaria": 0.28664378564514303,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "Sídney": {
+            "timestamp": "2025-08-14T09:00:00+00:00",
+            "ciudad": "Sídney",
+            "clima": {
+                "temperatura_actual": 11.1,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 14.9,
+                            "temp_min": 9.7,
+                            "precipitacion": 43
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 18.1,
+                            "temp_min": 9.0,
+                            "precipitacion": 15
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 17.4,
+                            "temp_min": 7.7,
+                            "precipitacion": 21
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 16.0,
+                            "temp_min": 3.2,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 11.8,
+                            "temp_min": 5.3,
+                            "precipitacion": 20
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 15.8,
+                            "temp_min": 6.1,
+                            "precipitacion": 28
+                        },
+                        {
+                            "fecha": "2025-08-20",
+                            "temp_max": 17.9,
+                            "temp_min": 5.9,
+                            "precipitacion": 28
+                        }
+                    ]
+                },
+                "precipitacion": 43,
+                "viento": 10.0,
+                "uv": 4.4
+            },
+            "tipo_de_cambio_actual": 1.53,
+            "variacion_diaria": 0.6601681457118359,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        }
+    },
+    {
+        "Nueva York": {
+            "timestamp": "2025-08-13T19:30:00+00:00",
+            "ciudad": "Nueva York",
+            "clima": {
+                "temperatura_actual": 24.9,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-13",
+                            "temp_max": 32.0,
+                            "temp_min": 23.1,
+                            "precipitacion": 62
+                        },
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 30.6,
+                            "temp_min": 22.3,
+                            "precipitacion": 17
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 31.4,
+                            "temp_min": 21.8,
+                            "precipitacion": 10
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 26.6,
+                            "temp_min": 22.8,
+                            "precipitacion": 9
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 30.3,
+                            "temp_min": 22.3,
+                            "precipitacion": 19
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 31.6,
+                            "temp_min": 22.7,
+                            "precipitacion": 19
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 27.3,
+                            "temp_min": 22.3,
+                            "precipitacion": 25
+                        }
+                    ]
+                },
+                "precipitacion": 62,
+                "viento": 19.5,
+                "uv": 7.35
+            },
+            "tipo_de_cambio_actual": 1,
+            "variacion_diaria": 0.5515898522162267,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "Londres": {
+            "timestamp": "2025-08-14T00:30:00+00:00",
+            "ciudad": "Londres",
+            "clima": {
+                "temperatura_actual": 19.4,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 27.5,
+                            "temp_min": 17.3,
+                            "precipitacion": 13
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 29.4,
+                            "temp_min": 18.6,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 25.7,
+                            "temp_min": 16.7,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 24.7,
+                            "temp_min": 13.9,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 24.7,
+                            "temp_min": 15.6,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 27.4,
+                            "temp_min": 16.7,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-20",
+                            "temp_max": 26.4,
+                            "temp_min": 16.0,
+                            "precipitacion": 14
+                        }
+                    ]
+                },
+                "precipitacion": 13,
+                "viento": 10.9,
+                "uv": 5.45
+            },
+            "tipo_de_cambio_actual": 0.741,
+            "variacion_diaria": 0.18449805935037214,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "Tokio": {
+            "timestamp": "2025-08-14T08:30:00+00:00",
+            "ciudad": "Tokio",
+            "clima": {
+                "temperatura_actual": 25.1,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 29.6,
+                            "temp_min": 23.4,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 31.7,
+                            "temp_min": 24.0,
+                            "precipitacion": 20
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 30.2,
+                            "temp_min": 25.0,
+                            "precipitacion": 35
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 33.7,
+                            "temp_min": 24.7,
+                            "precipitacion": 15
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 35.6,
+                            "temp_min": 25.5,
+                            "precipitacion": 19
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 34.9,
+                            "temp_min": 25.6,
+                            "precipitacion": 20
+                        },
+                        {
+                            "fecha": "2025-08-20",
+                            "temp_max": 35.8,
+                            "temp_min": 24.9,
+                            "precipitacion": 8
+                        }
+                    ]
+                },
+                "precipitacion": 3,
+                "viento": 2.0,
+                "uv": 7.75
+            },
+            "tipo_de_cambio_actual": 147.98,
+            "variacion_diaria": 1.3020458932653451,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "São Paulo": {
+            "timestamp": "2025-08-13T20:30:00+00:00",
+            "ciudad": "São Paulo",
+            "clima": {
+                "temperatura_actual": 17.0,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-13",
+                            "temp_max": 25.4,
+                            "temp_min": 8.6,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 19.1,
+                            "temp_min": 9.9,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 19.6,
+                            "temp_min": 12.4,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 23.4,
+                            "temp_min": 13.9,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 25.1,
+                            "temp_min": 14.2,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 23.4,
+                            "temp_min": 13.8,
+                            "precipitacion": 0
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 26.6,
+                            "temp_min": 11.9,
+                            "precipitacion": 0
+                        }
+                    ]
+                },
+                "precipitacion": 0,
+                "viento": 3.1,
+                "uv": 6.35
+            },
+            "tipo_de_cambio_actual": 5.44,
+            "variacion_diaria": 0.02726504337679625,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 75
+            },
+            "indice_ivv": 92.5,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        },
+        "Sídney": {
+            "timestamp": "2025-08-14T09:30:00+00:00",
+            "ciudad": "Sídney",
+            "clima": {
+                "temperatura_actual": 11.9,
+                "pronostico_7_dias": {
+                    "pronostico_7_dias": [
+                        {
+                            "fecha": "2025-08-14",
+                            "temp_max": 14.9,
+                            "temp_min": 9.7,
+                            "precipitacion": 43
+                        },
+                        {
+                            "fecha": "2025-08-15",
+                            "temp_max": 18.1,
+                            "temp_min": 9.0,
+                            "precipitacion": 15
+                        },
+                        {
+                            "fecha": "2025-08-16",
+                            "temp_max": 17.4,
+                            "temp_min": 7.7,
+                            "precipitacion": 21
+                        },
+                        {
+                            "fecha": "2025-08-17",
+                            "temp_max": 16.0,
+                            "temp_min": 3.2,
+                            "precipitacion": 3
+                        },
+                        {
+                            "fecha": "2025-08-18",
+                            "temp_max": 11.8,
+                            "temp_min": 5.3,
+                            "precipitacion": 20
+                        },
+                        {
+                            "fecha": "2025-08-19",
+                            "temp_max": 15.8,
+                            "temp_min": 6.1,
+                            "precipitacion": 28
+                        },
+                        {
+                            "fecha": "2025-08-20",
+                            "temp_max": 17.9,
+                            "temp_min": 5.9,
+                            "precipitacion": 28
+                        }
+                    ]
+                },
+                "precipitacion": 43,
+                "viento": 10.3,
+                "uv": 4.4
+            },
+            "tipo_de_cambio_actual": 1.53,
+            "variacion_diaria": -0.8544004968520238,
+            "tendencia_5_dias": "Estable",
+            "componentes_ivv": {
+                "clima_score": 100,
+                "cambio_score": 100,
+                "uv_sore": 100
+            },
+            "indice_ivv": 100.0,
+            "alertas": [
+                {
+                    "tipo": "CAMBIO",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                },
+                {
+                    "tipo": "CLIMA",
+                    "severidad": "BAJA",
+                    "mensaje": "Los parametros estan dentro de lo establecido"
+                }
+            ]
+        }
+    }
+]
