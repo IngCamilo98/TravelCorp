@@ -1,19 +1,16 @@
-import requests
-import json
+import random
 import time
 from typing import Dict, Any
 from datetime import datetime, timezone, timedelta
-import random
+from typing import Dict, Any
 
-# Cordenadas ciudades a monitorear
+import requests
 
-cities = {
-    "Nueva York": {"lat": 40.7128, "lon": -74.0060, "currency": "USD"},
-    "Londres": {"lat": 51.5074, "lon": -0.1278, "currency": "GBP"},
-    "Tokio": {"lat": 35.6895, "lon": 139.6917, "currency": "JPY"},
-    "São Paulo": {"lat": -23.5505, "lon": -46.6333, "currency": "BRL"},
-    "Sídney": {"lat": -33.8688, "lon": 151.2093, "currency": "AUD"}
-}
+from config.constants import CITIES
+from models.open_meteo_response import WeatherData
+from pydantic import ValidationError
+
+
 
 # ---------------------------------------------------------------
 # Primera API 
@@ -21,8 +18,9 @@ cities = {
 # ---------------------------------------------------------------
 
 def get_format_timestamp(times_stamp: str) -> str:
-    """La función get_format_timestamp toma una cadena de fecha y hora (times_stamp) en formato ISO (por ejemplo, "2025-08-12T19:30") y la convierte en un objeto datetime con zona horaria UTC.
-Luego, devuelve esa fecha y hora en formato ISO 8601, incluyendo la información de la zona horaria (+00:00 para UTC).
+    """La función get_format_timestamp toma una cadena de fecha y hora (times_stamp) en formato ISO (por ejemplo,
+    "2025-08-12T19:30") y la convierte en un objeto datetime con zona horaria UTC.
+    Luego, devuelve esa fecha y hora en formato ISO 8601, incluyendo la información de la zona horaria (+00:00 para UTC).
 
     Args:
         times_stamp (str): Dato timesstamp en formato string
@@ -30,30 +28,16 @@ Luego, devuelve esa fecha y hora en formato ISO 8601, incluyendo la información
     Returns:
         str: Dato timesstamp en formato ISO 8601 con zona horaria UTC
     """
-
-    # 1. Convertir la cadena a un objeto datetime
-    # Se usa strptime() para parsear la cadena con el formato correcto.
-    # El formato "%Y-%m-%dT%H:%M" coincide con '2025-08-12T19:30'
     fecha_hora = datetime.fromisoformat(times_stamp)
-
-    # 2. Agregar la zona horaria UTC
-    # Se le dice al objeto datetime que está en la zona horaria UTC.
-    # La "Z" en el formato ISO 8601 representa UTC.
     fecha_hora_utc = fecha_hora.replace(tzinfo=timezone.utc)
-
-    # 3. Formatear el objeto datetime al formato ISO 8601
-    # La función isoformat() lo hace automáticamente.
     timestamp_formateado = fecha_hora_utc.isoformat()
-
-    # Imprimir el resultado final
-    #print(f"Timestamp original: {times_stamp}")
-    #print(f"Timestamp formateado (con Z): {timestamp_formateado}")
 
     return timestamp_formateado
 
-def get_pronostico_7_dias(data_meteorology : Dict[str, Any]) -> Dict:
 
-    """La función get_pronostico_7_dias toma como entrada un diccionario con datos meteorológicos (de la API Open-Meteo) y construye una lista de diccionarios, cada uno representando el pronóstico diario para los próximos 7 días.
+def get_pronostico_siete_dias(data_meteorology: Dict[str, Any]) -> Dict:
+    """La función get_pronostico_siete_dias toma como entrada un diccionario con datos meteorológicos (de la API Open-Meteo)
+     y construye una lista de diccionarios, cada uno representando el pronóstico diario para los próximos 7 días.
 
     Args:
         data_meteorology (Dict[str, Any]): datos meteorológicos (de la API Open-Meteo)
@@ -62,10 +46,11 @@ def get_pronostico_7_dias(data_meteorology : Dict[str, Any]) -> Dict:
         _type_: Diccionario con el pronóstico de 7 días en el formato solicitado en los requerimientos.
     """
 
-    fechas = data_meteorology['daily']['time']
-    temp_minimas = data_meteorology['daily']['temperature_2m_min']
-    temp_maximas = data_meteorology['daily']['temperature_2m_max']
-    probabilidad_precipitacion = data_meteorology['daily']['precipitation_probability_max']
+    data_meteorology = WeatherData(**data_meteorology)
+    fechas = data_meteorology.daily.time
+    temp_minimas = data_meteorology.daily.temperature_2m_min
+    temp_maximas = data_meteorology.daily.temperature_2m_max
+    probabilidad_precipitacion = data_meteorology.daily.precipitation_probability_max
 
     # --- Combinar las listas en el formato deseado ---
     pronostico_7_dias = []
@@ -82,8 +67,8 @@ def get_pronostico_7_dias(data_meteorology : Dict[str, Any]) -> Dict:
 
     return pronostico_7_dias
 
-def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, Any]:
 
+def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, Any]:
     """La función extract_api_meteorology consulta la API meteorológica Open-Meteo para una ciudad específica y devuelve un diccionario con información solicitado del clima en el formato de diccionario solicitado.
 
     Raises:
@@ -108,7 +93,6 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
         f"&timezone=auto"
         f"&forecast_days=7"
     )
-
     try:
         response = requests.get(url_meteo, timeout=10)
         response.raise_for_status()  # Lanza error si status != 200
@@ -122,7 +106,7 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
             "ciudad": name_city,
             "clima": {
                 "temperatura_actual": data_meteorology['current']['temperature_2m'],
-                "pronostico_7_dias": get_pronostico_7_dias(data_meteorology),
+                "pronostico_7_dias": get_pronostico_siete_dias(data_meteorology),
                 "precipitacion": data_meteorology['daily']['precipitation_probability_max'][0],
                 "viento": data_meteorology['current']['wind_speed_10m'],
                 "uv": data_meteorology['daily']['uv_index_max'][0]
@@ -133,10 +117,13 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
 
     except requests.exceptions.RequestException as e:
         print(f"❌ Error de conexión con la API: {e}")
+    except ValidationError as e:
+        print(f"⚠️ Error de validación de datos: {e}")
     except ValueError as e:
         print(f"⚠️ Datos incompletos o formato inesperado: {e}")
     except Exception as e:
         print(f"🚨 Error inesperado: {e}")
+
     return None
 
 
@@ -145,10 +132,10 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
 # B. API de Tipos de Cambio - ExchangeRate-API
 # ---------------------------------------------------------------
 
-def extract_api_exchangerate(city_currency: str)->Dict[str, Any]:
-    """La función extract_api_exchangerate consulta la API ExchangeRate-API para obtener información financiera sobre el tipo de cambio de una moneda específica respecto al dólar estadounidense (USD) y lo transfomra en un diccionario con los requerimints solicitados.
-
-
+def extract_api_exchangerate(city_currency: str) -> Dict[str, Any]:
+    """La función extract_api_exchangerate consulta la API ExchangeRate-API para obtener información financiera sobre
+    el tipo de cambio de una moneda específica respecto al dólar estadounidense (USD) y lo transfomra en un diccionario
+    con los requerimints solicitados.
 
     Args:
         city_currency (str): Se requiere la nomenclatura de la moneda a consultar, por ejemplo: "BRL" para el Real Brasileño.
@@ -156,14 +143,13 @@ def extract_api_exchangerate(city_currency: str)->Dict[str, Any]:
     Returns:
         Dict[str, Any]: se retorno el diccionario con la información financiera solicitada.
     """
-    
+
     # URL de la API de ExchangeRate-API
     url_exchangerate = (f"https://api.exchangerate-api.com"
                         f"/v4"
                         f"/latest"
                         f"/USD"
                         )
-    
 
     response = requests.get(url_exchangerate, timeout=10)
     response.raise_for_status()  # Lanza error si status != 200
@@ -186,7 +172,7 @@ def extract_api_exchangerate(city_currency: str)->Dict[str, Any]:
         date = today - timedelta(days=i)
         variation_percent = random.uniform(-2, 2)
         historical_variations.append(variation_percent)
-        
+
         # La tasa anterior se calcula a partir de la actual y la variación simulada
         previous_rate = current_rate / (1 + (variation_percent / 100))
         current_rate = previous_rate
@@ -200,20 +186,20 @@ def extract_api_exchangerate(city_currency: str)->Dict[str, Any]:
         tendencia = "Volátil"
 
     finanzas = {
-        "tipo_de_cambio_actual":rates[city_currency],
+        "tipo_de_cambio_actual": rates[city_currency],
         "variacion_diaria": average_variation,
         "tendencia_5_dias": tendencia,
     }
 
-
     return finanzas
+
 
 # ---------------------------------------------------------------
 #   Tercera API
 # c. API time Zone - ExchangeRate-API
 # ---------------------------------------------------------------
 
-def extract_api_timezone() -> None: 
+def extract_api_timezone() -> None:
     """La función extract_api_timezone consulta la API worldtimeapi.org para obtener la hora local y la diferencia horaria con Bogotá para varias ciudades.
     """
 
@@ -264,24 +250,16 @@ def extract_api_timezone() -> None:
             print(f"No se pudo obtener datos para {ciudad}")
     return None
 
+
 # ---------------------------------------------------------------
 # Cuarto Indices
 # ---------------------------------------------------------------
 
-dict_meteorology = extract_api_meteorology("Nueva York",cities["Nueva York"])
-#print(dict_meteorology)
+dict_meteorology = extract_api_meteorology("Nueva York", CITIES["Nueva York"])
+# print(dict_meteorology)
 
 dict_finanzas = extract_api_exchangerate("BRL")
-#pretty_json = json.dumps(finanzas, indent=4)
-#print(pretty_json)
+# pretty_json = json.dumps(finanzas, indent=4)
+# print(pretty_json)
 
 merged_dict = {**dict_meteorology, **dict_finanzas}
-
-
-#print(json.dumps(merged_dict, indent=4, ensure_ascii=False))
-
-
-
-
-
-
