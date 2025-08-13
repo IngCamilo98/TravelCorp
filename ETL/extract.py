@@ -6,11 +6,11 @@ from datetime import datetime, timezone
 # Cordenadas ciudades a monitorear
 
 cities = {
-    "Nueva York": {"lat": 40.7128, "lon": -74.0060},
-    "Londres": {"lat": 51.5074, "lon": -0.1278},
-    "Tokio": {"lat": 35.6895, "lon": 139.6917},
-    "São Paulo": {"lat": -23.5505, "lon": -46.6333},
-    "Sídney": {"lat": -33.8688, "lon": 151.2093}
+    "Nueva York": {"lat": 40.7128, "lon": -74.0060, "currency": "USD"},
+    "Londres": {"lat": 51.5074, "lon": -0.1278, "currency": "GBP"},
+    "Tokio": {"lat": 35.6895, "lon": 139.6917, "currency": "JPY"},
+    "São Paulo": {"lat": -23.5505, "lon": -46.6333, "currency": "BRL"},
+    "Sídney": {"lat": -33.8688, "lon": 151.2093, "currency": "AUD"}
 }
 
 # ---------------------------------------------------------------
@@ -49,12 +49,12 @@ Luego, devuelve esa fecha y hora en formato ISO 8601, incluyendo la información
 
     return timestamp_formateado
 
-def get_pronostico_7_dias(data_meteorology : Dict) -> Dict:
+def get_pronostico_7_dias(data_meteorology : Dict[str, Any]) -> Dict:
 
     """La función get_pronostico_7_dias toma como entrada un diccionario con datos meteorológicos (de la API Open-Meteo) y construye una lista de diccionarios, cada uno representando el pronóstico diario para los próximos 7 días.
 
     Args:
-        data_meteorology (Dict): datos meteorológicos (de la API Open-Meteo)
+        data_meteorology (Dict[str, Any]): datos meteorológicos (de la API Open-Meteo)
 
     Returns:
         _type_: Diccionario con el pronóstico de 7 días en el formato solicitado en los requerimientos.
@@ -127,7 +127,6 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
             }
         }
 
-        print(json.dumps(dict_meteorology, indent=4))
         return dict_meteorology
 
     except requests.exceptions.RequestException as e:
@@ -138,44 +137,14 @@ def extract_api_meteorology(name_city: str, city: Dict[str, Any]) -> Dict[str, A
         print(f"🚨 Error inesperado: {e}")
     return None
 
+
 # ---------------------------------------------------------------
 #   Segunda API
 # B. API de Tipos de Cambio - ExchangeRate-API
 # ---------------------------------------------------------------
 
 def extract_api_exchangerate() -> dict:
-    try:
-        url_exchangerate = (f"https://api.exchangerate-api.com"
-                            f"/v4"
-                            f"/latest"
-                            f"/USD"
-                            )
-
-        response = requests.get(url_exchangerate, timeout=10)
-        response.raise_for_status()  # Lanza error si status != 200
-        data_exchangerate = response.json()
-
-        # 1. Conversión USD a monedas locales
-        base_currency = data_exchangerate["base"]
-        rates = data_exchangerate["rates"]
-
-        print("### Conversión de USD a monedas locales 💵")
-        print(f"La tasa base es de **1 {base_currency}**.\n")
-        print("Aquí están algunas de las tasas de conversión más comunes:")
-        
-        # Ejemplos de monedas para mostrar
-        currencies_to_show = ["EUR", "MXN", "COP", "JPY", "GBP"]
-        for currency in currencies_to_show:
-            if currency in rates:
-                print(f"- **{currency}:** {rates[currency]:.2f}")
-        
-
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error de conexión con la API: {e}")
-    except ValueError as e:
-        print(f"⚠️ Datos incompletos o formato inesperado: {e}")
-    except Exception as e:
-        print(f"🚨 Error inesperado: {e}")
+    
     return None
 
 # ---------------------------------------------------------------
@@ -183,7 +152,7 @@ def extract_api_exchangerate() -> dict:
 # c. API time Zone - ExchangeRate-API
 # ---------------------------------------------------------------
 
-def extract_api_timezone() -> dict:
+def extract_api_timezone() -> None:
 
     ciudades = {
         "Nueva York": "America/New_York",
@@ -233,8 +202,11 @@ def extract_api_timezone() -> dict:
     return None
 
 
-extract_api_meteorology("Nueva York",cities["Nueva York"])
+dict_meteorology = extract_api_meteorology("Nueva York",cities["Nueva York"])
+#print(dict_meteorology)
+
 #extract_api_exchangerate()
+
 #extract_api_timezone()
 
 

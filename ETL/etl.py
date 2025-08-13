@@ -1,6 +1,8 @@
 import requests
 import json
-
+import time
+from typing import Dict, Any
+from datetime import datetime, timezone
 # Cordenadas ciudades a monitorear
 
 cities = {
@@ -120,8 +122,7 @@ except Exception as e:
 #   Tercera API
 # B. API de Tipos de Cambio - ExchangeRate-API
 # ---------------------------------------------------------------
-import requests
-import time
+
 
 ciudades = {
     "Nueva York": "America/New_York",
